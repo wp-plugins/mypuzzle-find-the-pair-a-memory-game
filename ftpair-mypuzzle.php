@@ -31,7 +31,6 @@ Notes    : Visible Copyrights and Hyperlink to mypuzzle.org required
  */
 function get_ftpair_mp_options ($default = false){
 	$shc_default = array(
-            'ftpair_showlink' => '0',
             'ftpair_width' => '500',
             'ftpair_height' => '500',
             'ftpair_pairs' => '8',
@@ -87,9 +86,6 @@ function ftpair_mp($atts) {
         $ftpair_pairs = $options['ftpair_pairs'];
         if (!is_numeric($ftpair_pairs) || !ftpair_mp_testRange(intval($ftpair_pairs),6,21)) {$ftpair_pairs=8;}
         
-        $ftpair_showlink = $options['ftpair_showlink'];
-        if (!is_numeric($ftpair_showlink) || !ftpair_mp_testRange(intval($ftpair_showlink),0,1)) {$ftpair_showlink=0;}
-        
         $ftpair_bgcolor = $options['ftpair_bgcolor'];
         $ftpair_bgcolor = str_replace('#', '', $ftpair_bgcolor);
         if (!preg_match('/^#(?:(?:[a-f0-9]{3}){1,2})$/i', '#'.$ftpair_bgcolor)) $ftpair_bgcolor = 'FFFFFF';
@@ -113,7 +109,6 @@ function ftpair_mp($atts) {
                 'ftpair_width' => $ftpair_width,
                 'ftpair_height' => $ftpair_height,
                 'ftpair_pairs' => $ftpair_pairs,
-                'ftpair_showlink' => $ftpair_showlink,
                 'ftpair_bgcolor' => $ftpair_bgcolor,
                 'ftpair_cardcolor' => $ftpair_cardcolor,
                 'ftpair_cardbordercolor' => $ftpair_cardbordercolor,
@@ -137,9 +132,7 @@ function ftpair_mp($atts) {
         
         $output .= "<div style='background-color:#".$ftpair_bgcolor.";width:".$ftpair_width."px'>";
         $output .= "  <div id='mem-grid'></div>";
-        if ($ftpair_showlink == "1") {
-            $output .= "  <div style='float: right;font-size:12px;'><a href='http://mypuzzle.org/'>".ftpair_mp_getrndanchor()."</a> by mypuzzle.org</div>";
-        }
+        $output .= "  <div style='float: right;font-size:12px;'><a href='http://mypuzzle.org/'>".ftpair_mp_getrndanchor()."</a> by mypuzzle.org</div>";
         $output .= "  <div style='width:".intval($ftpair_width/2)."px;float: left;font-size:12px;'><a id='aRestart' href=''>Restart</a></div>";
         $output .= "</div>";
         
@@ -204,8 +197,7 @@ function ftpair_mp_options_page() {
 	<?php 
 
 	if(isset($_POST['Submit'])){
-                $newoptions['ftpair_showlink'] = isset($_POST['ftpair_showlink'])?$_POST['ftpair_showlink']:$options['ftpair_showlink'];
-     		$newoptions['ftpair_width'] = isset($_POST['ftpair_width'])?$_POST['ftpair_width']:$options['ftpair_width'];
+                $newoptions['ftpair_width'] = isset($_POST['ftpair_width'])?$_POST['ftpair_width']:$options['ftpair_width'];
                 $newoptions['ftpair_height'] = isset($_POST['ftpair_height'])?$_POST['ftpair_height']:$options['ftpair_height'];
                 $newoptions['ftpair_pairs'] = isset($_POST['ftpair_pairs'])?$_POST['ftpair_pairs']:$options['ftpair_pairs'];
                 
@@ -225,9 +217,7 @@ function ftpair_mp_options_page() {
             update_option('mp_ftpair_op', $options);
         }
         
-        $ftpair_showlink = $options['ftpair_showlink'];
-        if (!is_numeric($ftpair_showlink) || !ftpair_mp_testRange(intval($ftpair_showlink),0,1)) {$ftpair_showlink=0;}
-	$ftpair_width = $options['ftpair_width'];
+        $ftpair_width = $options['ftpair_width'];
         if (!is_numeric($ftpair_width) || !ftpair_mp_testRange(intval($ftpair_width),100,1500)) {$ftpair_width=450;} //to be checked
 	$ftpair_height = $options['ftpair_height'];
         if (!is_numeric($ftpair_height) || !ftpair_mp_testRange(intval($ftpair_height),100,1500)) {$ftpair_height=450;} //to be checked
@@ -259,20 +249,6 @@ function ftpair_mp_options_page() {
 	<h3><?php _e("Find The Pair Puzzle Parameters") ?></h3>
 	
         <table width="" border="0" cellspacing="10" cellpadding="0">
-            <tr>
-                <td width="100">
-                    Insert Link
-                </td>
-                <td>
-                    <select name="ftpair_showlink" id="ftpair_showlink" style="width: 150px">
-                            <option value="1"<?php echo ($ftpair_showlink == "1" ? " selected" : "") ?>><?php echo _e("Yes") ?></option>
-                            <option value="0"<?php echo ($ftpair_showlink == "0" ? " selected" : "") ?>><?php echo _e("No") ?></option>
-                    </select>
-                </td>
-                <td width="500">
-                    If you somehow like the plugin, we would happy if you enable the link to us. Many Thanks!
-                </td>
-            </tr>
             <tr>
                 <td width="100">
                     Puzzle width in px
