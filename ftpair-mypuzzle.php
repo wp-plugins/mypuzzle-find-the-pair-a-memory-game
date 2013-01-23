@@ -3,7 +3,7 @@
 Plugin Name: MyPuzzle - Find The Pair | A Memory Game
 Plugin URI: http://mypuzzle.org/find-the-pair/wordpress.html
 Description: Include a mypuzzle.org Find the pair Puzzle in your blogs with just one shortcode. 
-Version: 1.0.0
+Version: 1.1.0
 Author: tom@mypuzzle.org
 Author URI: http://mypuzzle.org/
 Notes    : Visible Copyrights and Hyperlink to mypuzzle.org required
@@ -38,17 +38,17 @@ function get_ftpair_mp_options ($default = false){
             'ftpair_bgcolor' => 'FFFFFF',
             'ftpair_cardcolor' => 'FEC',
             'ftpair_cardbordercolor' => 'F96',
-            'ftpair_gallery' => 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery'
+            'ftpair_gallery' => 'wp-content/plugins/mypuzzle-find-the-pair/gallery'
             );
 	if ($default) {
-		update_option('shc_op', $shc_default);
+		update_option('mp_ftpair_op', $shc_default);
 		return $shc_default;
 	}
 	
-	$options = get_option('shc_op');
+	$options = get_option('mp_ftpair_op');
 	if (isset($options))
 		return $options;
-	update_option('shc_op', $shc_default);
+	update_option('mp_ftpair_op', $shc_default);
 	return $options;
 }
 
@@ -104,7 +104,7 @@ function ftpair_mp($atts) {
         
         $ftpair_gallery = $options['ftpair_gallery'];
         if (!$ftpair_gallery || $ftpair_gallery=='') {
-            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery';
+            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair/gallery';
         } else {
             $ftpair_gallery = ftpair_mp_clearpath($ftpair_gallery);
         }
@@ -134,7 +134,7 @@ function ftpair_mp($atts) {
         $output .= ".memCard.empty {border-color: #".$ftpair_bgcolor."; background: #".$ftpair_bgcolor."; cursor: default;}";
         
         $output .= "</style>";
-        $ftpair_showlink = "1";
+        
         $output .= "<div style='background-color:#".$ftpair_bgcolor.";width:".$ftpair_width."px'>";
         $output .= "  <div id='mem-grid'></div>";
         if ($ftpair_showlink == "1") {
@@ -216,13 +216,13 @@ function ftpair_mp_options_page() {
                 
                 if ( $options != $newoptions ) {
                         $options = $newoptions;
-                        update_option('shc_op', $options);
+                        update_option('mp_ftpair_op', $options);
                 }
 
  	} 
 
 	if(isset($_POST['Use_Default'])){
-            update_option('shc_op', $options);
+            update_option('mp_ftpair_op', $options);
         }
         
         $ftpair_showlink = $options['ftpair_showlink'];
@@ -248,7 +248,7 @@ function ftpair_mp_options_page() {
         
         $ftpair_gallery = $options['ftpair_gallery'];
         if (!$ftpair_gallery || $ftpair_gallery=='') {
-            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery';
+            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair/gallery';
         } else {
             $ftpair_gallery = ftpair_mp_clearpath($ftpair_gallery);
         }
@@ -259,6 +259,20 @@ function ftpair_mp_options_page() {
 	<h3><?php _e("Find The Pair Puzzle Parameters") ?></h3>
 	
         <table width="" border="0" cellspacing="10" cellpadding="0">
+            <tr>
+                <td width="100">
+                    Insert Link
+                </td>
+                <td>
+                    <select name="ftpair_showlink" id="ftpair_showlink" style="width: 150px">
+                            <option value="1"<?php echo ($ftpair_showlink == "1" ? " selected" : "") ?>><?php echo _e("Yes") ?></option>
+                            <option value="0"<?php echo ($ftpair_showlink == "0" ? " selected" : "") ?>><?php echo _e("No") ?></option>
+                    </select>
+                </td>
+                <td width="500">
+                    If you somehow like the plugin, we would happy if you enable the link to us. Many Thanks!
+                </td>
+            </tr>
             <tr>
                 <td width="100">
                     Puzzle width in px
