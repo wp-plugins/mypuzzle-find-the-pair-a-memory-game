@@ -3,7 +3,7 @@
 Plugin Name: MyPuzzle - Find The Pair | A Memory Game
 Plugin URI: http://mypuzzle.org/find-the-pair/wordpress.html
 Description: Include a mypuzzle.org Find the pair Puzzle in your blogs with just one shortcode. 
-Version: 1.1.0
+Version: 1.1.1
 Author: tom@mypuzzle.org
 Author URI: http://mypuzzle.org/
 Notes    : Visible Copyrights and Hyperlink to mypuzzle.org required
