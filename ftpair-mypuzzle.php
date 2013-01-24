@@ -37,7 +37,7 @@ function get_ftpair_mp_options ($default = false){
             'ftpair_bgcolor' => 'FFFFFF',
             'ftpair_cardcolor' => 'FEC',
             'ftpair_cardbordercolor' => 'F96',
-            'ftpair_gallery' => 'wp-content/plugins/mypuzzle-find-the-pair/gallery'
+            'ftpair_gallery' => 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery'
             );
 	if ($default) {
 		update_option('mp_ftpair_op', $shc_default);
@@ -100,7 +100,7 @@ function ftpair_mp($atts) {
         
         $ftpair_gallery = $options['ftpair_gallery'];
         if (!$ftpair_gallery || $ftpair_gallery=='') {
-            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair/gallery';
+            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery';
         } else {
             $ftpair_gallery = ftpair_mp_clearpath($ftpair_gallery);
         }
@@ -238,7 +238,7 @@ function ftpair_mp_options_page() {
         
         $ftpair_gallery = $options['ftpair_gallery'];
         if (!$ftpair_gallery || $ftpair_gallery=='') {
-            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair/gallery';
+            $ftpair_gallery = 'wp-content/plugins/mypuzzle-find-the-pair-a-memory-game/gallery';
         } else {
             $ftpair_gallery = ftpair_mp_clearpath($ftpair_gallery);
         }
