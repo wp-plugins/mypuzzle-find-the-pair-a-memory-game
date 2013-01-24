@@ -4,7 +4,7 @@ Donate link: http://mypuzzle.org
 Tags: find the pair, mypuzzle, puzzle, puzzles, concentration, memory
 Requires at least: 2.5
 Tested up to: 3.4.2
-Stable tag: 1.0.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,3 +57,9 @@ Visit <a href="http://blog.mypuzzle.org/find-the-pair-for-wordpress/">Wordpress 
 
  = 1.0.0 =  
  * Initial release.
+
+ = 1.1.0 =
+ * Fixed option save conflicts with other plugins
+
+ = 1.1.1 =
+ * Fixed wrong default gallery path
